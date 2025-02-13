@@ -1,0 +1,38 @@
+﻿@model List<Utilisateur>
+
+@{
+    ViewData["Title"] = "Liste des utilisateurs";
+}
+
+<h2>Liste des utilisateurs</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Utilisateur user in Model)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Nom</td>
+                <td>@user.Prenom</td>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>
+                    <a asp-controller="Utilisateur" asp-action="Edit" asp-route-id="@user.Id">Modifier</a> |
+                    <a asp-controller="Utilisateur" asp-action="Delete" asp-route-id="@user.Id">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Utilisateur" asp-action="Create" class="btn btn-primary">Créer un nouvel utilisateur</a>

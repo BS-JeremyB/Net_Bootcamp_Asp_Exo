@@ -1,0 +1,53 @@
+﻿@model UtilisateurEditForm
+@{
+    ViewData["Title"] = "Modifier un utilisateur";
+}
+
+<h2>Modifier un utilisateur</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Nom"></label>
+        <input asp-for="Nom" class="form-control" />
+        <span asp-validation-for="Nom" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Prenom"></label>
+        <input asp-for="Prenom" class="form-control" />
+        <span asp-validation-for="Prenom" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PasswordConfirm"></label>
+        <input asp-for="PasswordConfirm" class="form-control" type="password" />
+        <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Role"></label>
+        <select asp-for="Role" class="form-control">
+            <option value="Admin">Admin</option>
+            <option value="Utilisateur">Utilisateur</option>
+        </select>
+    </div><br />
+
+
+    <button type="submit" class="btn btn-primary">Editer</button>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -53,7 +53,7 @@ namespace Net_Bootcamp_Asp_Exo.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Utilisateurs", t =>
+                    b.ToTable("Utilisateurs", null, t =>
                         {
                             t.HasCheckConstraint("CK_Utilisateur_Password", "[Password] LIKE '%[A-Z]%' AND [Password] LIKE '%[a-z]%' AND [Password] LIKE '%[0-9]%' AND [Password] LIKE '%[@#$%^&+=!]%' AND LEN([Password]) >= 8 ");
                         });
