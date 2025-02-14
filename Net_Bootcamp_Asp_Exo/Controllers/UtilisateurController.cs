@@ -61,10 +61,14 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(UtilisateurEditForm utilisateur)
+        public IActionResult Edit([FromRoute]int id, UtilisateurEditForm utilisateur)
         {
             if (!ModelState.IsValid) return View(utilisateur);
 
+            if (id != utilisateur.Id)
+            {
+                return BadRequest("L'id de la route ne correspond pas à l'id du formulaire.");
+            }
 
             bool emailExists = _dc.Utilisateurs.Any(u => u.Email == utilisateur.Email && u.Id != utilisateur.Id);
             if (emailExists)

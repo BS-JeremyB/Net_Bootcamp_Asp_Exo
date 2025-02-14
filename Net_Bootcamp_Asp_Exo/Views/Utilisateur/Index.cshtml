@@ -27,8 +27,8 @@
                 <td>@user.Email</td>
                 <td>@user.Role</td>
                 <td>
-                    <a asp-controller="Utilisateur" asp-action="Edit" asp-route-id="@user.Id">Modifier</a> |
-                    <a asp-controller="Utilisateur" asp-action="Delete" asp-route-id="@user.Id">Supprimer</a>
+                    <a asp-controller="Utilisateur" asp-action="Edit" asp-route-id="@user.Id" class="btn btn-warning">Modifier</a> |
+                    <a asp-controller="Utilisateur" asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger">Supprimer</a>
                 </td>
             </tr>
         }

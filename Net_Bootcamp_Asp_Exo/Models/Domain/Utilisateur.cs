@@ -1,11 +1,13 @@
-﻿namespace Net_Bootcamp_Asp_Exo.Models.Domain
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Net_Bootcamp_Asp_Exo.Models.Domain
 {
     public enum Role
     {
         Admin,
         Utilisateur
     }
-
     public class Utilisateur
     {
         public int Id { get; set; }

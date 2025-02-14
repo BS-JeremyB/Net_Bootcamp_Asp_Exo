@@ -13,6 +13,13 @@ namespace Net_Bootcamp_Asp_Exo.Data
         }
         public DbSet<Utilisateur> Utilisateurs { get; set; }
 
+
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DB_ENTITY_BOOTCAMP_NET_Exo;Integrated Security=True;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        //}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

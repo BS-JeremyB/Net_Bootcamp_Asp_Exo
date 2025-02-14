@@ -18,6 +18,8 @@ namespace Net_Bootcamp_Asp_Exo.Data.Config
                                                                                  "AND [Password] LIKE '%[@#$%^&+=!]%' " +
                                                                                  "AND LEN([Password]) >= 8 " 
                                                       ));
+
+            //builder.Property(u => u.Role).HasConversion<string>();
         }
     }
 }
