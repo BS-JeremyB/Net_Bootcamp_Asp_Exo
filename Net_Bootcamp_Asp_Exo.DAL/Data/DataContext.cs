@@ -1,9 +1,8 @@
-﻿using Net_Bootcamp_Asp_Exo.Models.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using Net_Bootcamp_Asp_Exo.DAL.Data.Config;
+using Net_Bootcamp_Asp_Exo.Domain.Entities;
 
-using Microsoft.EntityFrameworkCore;
-using Net_Bootcamp_Asp_Exo.Data.Config;
-
-namespace Net_Bootcamp_Asp_Exo.Data
+namespace Net_Bootcamp_Asp_Exo.DAL.Data
 {
     public class DataContext : DbContext
     {

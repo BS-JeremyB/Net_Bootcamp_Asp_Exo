@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Net_Bootcamp_Asp_Exo.DAL\Net_Bootcamp_Asp_Exo.DAL.csproj" />
+    <ProjectReference Include="..\Net_Bootcamp_Asp_Exo.Domain\Net_Bootcamp_Asp_Exo.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

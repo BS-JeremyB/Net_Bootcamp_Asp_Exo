@@ -1,4 +1,4 @@
-﻿using Net_Bootcamp_Asp_Exo.Models.Domain;
+﻿using Net_Bootcamp_Asp_Exo.Domain.Entities;
 using Net_Bootcamp_Asp_Exo.Validations;
 using System.ComponentModel.DataAnnotations;
 

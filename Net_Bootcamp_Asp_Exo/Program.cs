@@ -1,5 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using Net_Bootcamp_Asp_Exo.Data;
+using Net_Bootcamp_Asp_Exo.BLL.Interfaces;
+using Net_Bootcamp_Asp_Exo.BLL.Services;
+using Net_Bootcamp_Asp_Exo.DAL.Data;
+using Net_Bootcamp_Asp_Exo.DAL.Interfaces;
+using Net_Bootcamp_Asp_Exo.DAL.Repositories;
+using Net_Bootcamp_Asp_Exo.Domain.Entities;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +15,19 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IUtilisateurService, UtilisateurService>();
 
+bool useEntity = builder.Configuration.GetValue<bool>("useEntity");
+
+if (useEntity)
+{
+    builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepository>();
+
+}
+else
+{
+    builder.Services.AddScoped<IUtilisateurRepository, UtilisateurRepositoryAdo>();
+}
 
 var app = builder.Build();
 

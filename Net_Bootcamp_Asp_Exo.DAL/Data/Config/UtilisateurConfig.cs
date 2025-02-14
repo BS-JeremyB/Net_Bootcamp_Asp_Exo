@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Net_Bootcamp_Asp_Exo.Models.Domain;
+using Net_Bootcamp_Asp_Exo.Domain.Entities;
 using System.Reflection.Emit;
 
-namespace Net_Bootcamp_Asp_Exo.Data.Config
+namespace Net_Bootcamp_Asp_Exo.DAL.Data.Config
 {
     public class UtilisateurConfig : IEntityTypeConfiguration<Utilisateur>
     {

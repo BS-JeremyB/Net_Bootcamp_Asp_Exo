@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Net_Bootcamp_Asp_Exo.Data;
+using Net_Bootcamp_Asp_Exo.BLL.Interfaces;
+using Net_Bootcamp_Asp_Exo.DAL.Data;
+using Net_Bootcamp_Asp_Exo.Domain.Entities;
 using Net_Bootcamp_Asp_Exo.Mappers;
-using Net_Bootcamp_Asp_Exo.Models.Domain;
 using Net_Bootcamp_Asp_Exo.Models.DTOs;
 using System;
 
@@ -10,17 +11,18 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
     public class UtilisateurController : Controller
     {
         private readonly DataContext _dc;
+        private readonly IUtilisateurService _service;
  
 
-        public UtilisateurController(DataContext dc)
+        public UtilisateurController(DataContext dc, IUtilisateurService service)
         {
             _dc = dc;
+            _service = service;
         }
 
         public IActionResult Index()
         {
-            List<Utilisateur> utilisateurs = _dc.Utilisateurs.ToList();
-            return View(utilisateurs);
+            return View(_service.GetAll());
         }
 
         public IActionResult Create()

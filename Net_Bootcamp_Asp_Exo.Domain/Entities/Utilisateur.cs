@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Net_Bootcamp_Asp_Exo.Models.Domain
+namespace Net_Bootcamp_Asp_Exo.Domain.Entities
 {
     public enum Role
     {
