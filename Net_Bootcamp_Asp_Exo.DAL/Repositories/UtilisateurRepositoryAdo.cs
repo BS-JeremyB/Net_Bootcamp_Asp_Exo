@@ -66,6 +66,11 @@ namespace Net_Bootcamp_Asp_Exo.DAL.Repositories
             }
         }
 
+        public Utilisateur GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Utilisateur Update(Utilisateur utilisateur)
         {
             throw new NotImplementedException();

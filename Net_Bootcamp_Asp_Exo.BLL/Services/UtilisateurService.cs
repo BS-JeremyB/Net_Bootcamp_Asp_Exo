@@ -26,9 +26,15 @@ namespace Net_Bootcamp_Asp_Exo.BLL.Services
             throw new NotImplementedException();
         }
 
-        public bool Delete(Utilisateur utilisateur)
+        public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Utilisateur utilisateurToDelete = _repository.GetById(id);
+            if (utilisateurToDelete != null)
+            {
+                return _repository.Delete(utilisateurToDelete);
+            }
+
+            return false;
         }
 
         public List<Utilisateur> GetAll()

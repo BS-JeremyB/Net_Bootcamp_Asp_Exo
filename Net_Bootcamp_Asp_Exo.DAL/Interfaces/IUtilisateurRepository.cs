@@ -11,6 +11,7 @@ namespace Net_Bootcamp_Asp_Exo.DAL.Interfaces
     {
 
         public List<Utilisateur> GetAll();
+        public Utilisateur GetById(int id);
         public Utilisateur Create(Utilisateur utilisateur);
         public Utilisateur Update(Utilisateur utilisateur);
         public bool Delete(Utilisateur utilisateur);

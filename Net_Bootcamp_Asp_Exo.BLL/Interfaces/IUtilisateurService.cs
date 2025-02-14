@@ -12,6 +12,6 @@ namespace Net_Bootcamp_Asp_Exo.BLL.Interfaces
         public List<Utilisateur> GetAll();
         public Utilisateur Create(Utilisateur utilisateur);
         public Utilisateur Update(Utilisateur utilisateur);
-        public bool Delete(Utilisateur utilisateur);
+        public bool Delete(int id);
     }
 }

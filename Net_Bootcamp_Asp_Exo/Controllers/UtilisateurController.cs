@@ -113,12 +113,8 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            Utilisateur utilisateur = _dc.Utilisateurs.Find(id);
-            if (utilisateur == null) return NotFound();
 
-            _dc.Utilisateurs.Remove(utilisateur);
-            _dc.SaveChanges();
-
+            _service.Delete(id);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -27,12 +27,19 @@ namespace Net_Bootcamp_Asp_Exo.DAL.Repositories
 
         public bool Delete(Utilisateur utilisateur)
         {
-            throw new NotImplementedException();
+            _dc.Remove(utilisateur);
+            _dc.SaveChanges();
+            return _dc.Utilisateurs.Find(utilisateur.Id) is null ? true : false;
         }
 
         public List<Utilisateur> GetAll()
         {
             return _dc.Utilisateurs.OrderBy(u => u.Nom).ToList();
+        }
+
+        public Utilisateur GetById(int id)
+        {
+            return _dc.Utilisateurs.Find(id);
         }
 
         public Utilisateur Update(Utilisateur utilisateur)
