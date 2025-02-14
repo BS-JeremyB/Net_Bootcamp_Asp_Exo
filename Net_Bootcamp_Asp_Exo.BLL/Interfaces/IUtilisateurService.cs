@@ -10,8 +10,10 @@ namespace Net_Bootcamp_Asp_Exo.BLL.Interfaces
     public interface IUtilisateurService
     {
         public List<Utilisateur> GetAll();
+
+        public Utilisateur GetById(int id);
         public Utilisateur Create(Utilisateur utilisateur);
-        public Utilisateur Update(Utilisateur utilisateur);
+        public Utilisateur Update(int id, Utilisateur utilisateur);
         public bool Delete(int id);
     }
 }

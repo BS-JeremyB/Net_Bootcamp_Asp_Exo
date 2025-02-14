@@ -19,6 +19,21 @@ namespace Net_Bootcamp_Asp_Exo.Mappers
                 
         }
 
+        public static Utilisateur ToUtilisateur(this UtilisateurEditForm utilisateur)
+        {
+            return new Utilisateur
+            {
+                Id = utilisateur.Id,
+                Nom = utilisateur.Nom,
+                Prenom = utilisateur.Prenom,
+                Email = utilisateur.Email,
+                Password = utilisateur.Password,
+                Role = utilisateur.Role,
+            };
+
+
+        }
+
 
 
         public static UtilisateurEditForm ToEditForm(this Utilisateur utilisateur)

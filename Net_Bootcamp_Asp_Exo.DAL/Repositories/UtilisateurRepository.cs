@@ -5,8 +5,6 @@ using Net_Bootcamp_Asp_Exo.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Net_Bootcamp_Asp_Exo.DAL.Repositories
 {
@@ -19,17 +17,18 @@ namespace Net_Bootcamp_Asp_Exo.DAL.Repositories
             _dc = dc;
         }
 
-
         public Utilisateur Create(Utilisateur utilisateur)
         {
-            throw new NotImplementedException();
+            _dc.Utilisateurs.Add(utilisateur);
+            _dc.SaveChanges();
+            return utilisateur;
         }
 
         public bool Delete(Utilisateur utilisateur)
         {
-            _dc.Remove(utilisateur);
+            _dc.Utilisateurs.Remove(utilisateur);
             _dc.SaveChanges();
-            return _dc.Utilisateurs.Find(utilisateur.Id) is null ? true : false;
+            return _dc.Utilisateurs.Find(utilisateur.Id) == null;
         }
 
         public List<Utilisateur> GetAll()
@@ -44,7 +43,9 @@ namespace Net_Bootcamp_Asp_Exo.DAL.Repositories
 
         public Utilisateur Update(Utilisateur utilisateur)
         {
-            throw new NotImplementedException();
+            _dc.Utilisateurs.Update(utilisateur);
+            _dc.SaveChanges();
+            return utilisateur;
         }
     }
 }

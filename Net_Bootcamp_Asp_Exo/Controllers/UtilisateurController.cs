@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Net_Bootcamp_Asp_Exo.BLL.Interfaces;
-using Net_Bootcamp_Asp_Exo.DAL.Data;
 using Net_Bootcamp_Asp_Exo.Domain.Entities;
 using Net_Bootcamp_Asp_Exo.Mappers;
 using Net_Bootcamp_Asp_Exo.Models.DTOs;
@@ -10,13 +9,10 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
 {
     public class UtilisateurController : Controller
     {
-        private readonly DataContext _dc;
         private readonly IUtilisateurService _service;
- 
 
-        public UtilisateurController(DataContext dc, IUtilisateurService service)
+        public UtilisateurController(IUtilisateurService service)
         {
-            _dc = dc;
             _service = service;
         }
 
@@ -39,23 +35,21 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
                 return View(utilisateur);
             }
 
-            bool emailExists = _dc.Utilisateurs.Any(u => u.Email == utilisateur.Email);
-            if (emailExists)
+            try
             {
-                ModelState.AddModelError("Email", "Cette adresse email est déjà utilisée.");
+                _service.Create(utilisateur.ToUtilisateur());
+                return RedirectToAction(nameof(Index));
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Email", ex.Message);
                 return View(utilisateur);
             }
-
-
-            _dc.Utilisateurs.Add(utilisateur.ToUtilisateur());
-            _dc.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Edit(int id)
         {
-            Utilisateur utilisateur = _dc.Utilisateurs.Find(id);
+            Utilisateur utilisateur = _service.GetById(id);
             if (utilisateur == null) return NotFound();
 
             return View(utilisateur.ToEditForm());
@@ -63,7 +57,7 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit([FromRoute]int id, UtilisateurEditForm utilisateur)
+        public IActionResult Edit(int id, UtilisateurEditForm utilisateur)
         {
             if (!ModelState.IsValid) return View(utilisateur);
 
@@ -72,38 +66,25 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
                 return BadRequest("L'id de la route ne correspond pas à l'id du formulaire.");
             }
 
-            bool emailExists = _dc.Utilisateurs.Any(u => u.Email == utilisateur.Email && u.Id != utilisateur.Id);
-            if (emailExists)
+            try
             {
-                ModelState.AddModelError("Email", "Cette adresse email est déjà utilisée.");
+                _service.Update(id, utilisateur.ToUtilisateur());
+                return RedirectToAction(nameof(Index));
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Email", ex.Message);
                 return View(utilisateur);
             }
-
-            Utilisateur utilisateurToEdit = _dc.Utilisateurs.Find(utilisateur.Id);
-            if (utilisateurToEdit == null) return NotFound();
-
-
-            utilisateurToEdit.Nom = utilisateur.Nom;
-            utilisateurToEdit.Prenom = utilisateur.Prenom;
-            utilisateurToEdit.Email = utilisateur.Email;
-            utilisateurToEdit.Role = utilisateur.Role;
-
-
-            if (!string.IsNullOrWhiteSpace(utilisateur.Password))
+            catch (KeyNotFoundException)
             {
-                utilisateurToEdit.Password = utilisateur.Password;
+                return NotFound();
             }
-
-            _dc.Utilisateurs.Update(utilisateurToEdit);
-            _dc.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
         }
-
 
         public IActionResult Delete(int id)
         {
-            Utilisateur utilisateur = _dc.Utilisateurs.Find(id);
+            Utilisateur utilisateur = _service.GetById(id);
             if (utilisateur == null) return NotFound();
 
             return View(utilisateur);
@@ -113,10 +94,8 @@ namespace Net_Bootcamp_Asp_Exo.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-
             _service.Delete(id);
             return RedirectToAction(nameof(Index));
         }
     }
 }
- 
